@@ -25,6 +25,7 @@ bool display[62][62];
 
 
 void Display(){
+    system("clear");
 	for(int i=0; i<size; i++)
 	{
 		for(int j=0; j<size; j++) cout<<((display[i][j])?'@':' ')<<' ';
@@ -121,8 +122,12 @@ void first_display(){
 	Display;
 }
 
-void run(){
-	while(true){
+int main()
+{
+	//ios_base::sync_with_studio(false);
+	cin.tie(0);	
+	first_display();
+		while(true){
 		thread th(read_value);
 		mutex mtx;
 		unique_lock<mutex> lck(mtx);
@@ -168,13 +173,5 @@ void run(){
 		cout<<"press ctrl+c to exit\n";
 		th.join();
 	}
-}
-
-int main()
-{
-	//ios_base::sync_with_studio(false);
-	cin.tie(0);	
-	first_display();
-	run();
 	return 0;
 }
